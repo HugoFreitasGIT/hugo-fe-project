@@ -23,7 +23,7 @@ export default function Hero() {
         </p>
         <div className="mt-8 flex flex-col gap-4 sm:mt-10 sm:flex-row sm:items-center sm:gap-8">
           <Link
-            href="#categories"
+            href="/shop"
             className="inline-flex h-12 items-center justify-center rounded-sm bg-ink px-7 text-sm font-medium text-canvas transition-colors hover:bg-ink/85"
           >
             Shop collection

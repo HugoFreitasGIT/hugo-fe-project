@@ -2,12 +2,16 @@ import Link from "next/link";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "Shop", href: "#categories" },
-  { label: "Categories", href: "#categories" },
+  { label: "Shop", href: "/shop" },
+  { label: "Categories", href: "/#categories" },
   { label: "About", href: "#about" },
 ];
 
-export default function Header() {
+type HeaderProps = {
+  currentPath: string;
+};
+
+export default function Header({ currentPath }: HeaderProps) {
   return (
     <header className="border-b border-line">
       <div className="mx-auto grid max-w-7xl grid-cols-[1fr_auto] items-center gap-y-4 px-5 py-4 sm:px-8 md:grid-cols-[1fr_auto_1fr] md:py-6">
@@ -27,7 +31,7 @@ export default function Header() {
               <li key={label}>
                 <Link
                   href={href}
-                  aria-current={href === "/" ? "page" : undefined}
+                  aria-current={href === currentPath ? "page" : undefined}
                   className="text-ink-muted transition-colors hover:text-ink aria-[current=page]:text-ink"
                 >
                   {label}

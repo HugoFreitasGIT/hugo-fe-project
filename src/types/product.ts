@@ -17,11 +17,17 @@ export type ProductImage = {
 };
 
 export type Product = {
-  id: number;
+  id: string;
   slug: string;
   name: string;
   description: string;
   price: Price;
   category: ProductCategory;
   image: ProductImage;
+};
+
+/** A product with its full image set, used on the product detail page. */
+export type ProductDetail = Product & {
+  /** All product images, starting with the main image. */
+  images: ProductImage[];
 };

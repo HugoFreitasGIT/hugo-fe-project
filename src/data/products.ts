@@ -6,7 +6,7 @@ const workspace: ProductCategory = { slug: "workspace", name: "Workspace" };
 
 export const products: Product[] = [
   {
-    id: 1,
+    id: "1",
     slug: "arc-ceramic-vase",
     name: "Arc Ceramic Vase",
     description:
@@ -19,7 +19,7 @@ export const products: Product[] = [
     },
   },
   {
-    id: 2,
+    id: "2",
     slug: "linen-throw",
     name: "Linen Throw",
     description:
@@ -32,7 +32,7 @@ export const products: Product[] = [
     },
   },
   {
-    id: 3,
+    id: "3",
     slug: "orb-table-lamp",
     name: "Orb Table Lamp",
     description:
@@ -45,7 +45,7 @@ export const products: Product[] = [
     },
   },
   {
-    id: 4,
+    id: "4",
     slug: "stoneware-mug-set",
     name: "Stoneware Mug Set",
     description:
@@ -58,7 +58,7 @@ export const products: Product[] = [
     },
   },
   {
-    id: 5,
+    id: "5",
     slug: "oak-serving-board",
     name: "Oak Serving Board",
     description:
@@ -71,7 +71,7 @@ export const products: Product[] = [
     },
   },
   {
-    id: 6,
+    id: "6",
     slug: "pour-over-set",
     name: "Pour-Over Set",
     description:
@@ -84,7 +84,7 @@ export const products: Product[] = [
     },
   },
   {
-    id: 7,
+    id: "7",
     slug: "felt-desk-mat",
     name: "Felt Desk Mat",
     description:
@@ -97,7 +97,7 @@ export const products: Product[] = [
     },
   },
   {
-    id: 8,
+    id: "8",
     slug: "walnut-pen-tray",
     name: "Walnut Pen Tray",
     description:
@@ -110,7 +110,7 @@ export const products: Product[] = [
     },
   },
   {
-    id: 9,
+    id: "9",
     slug: "aluminium-task-light",
     name: "Aluminium Task Light",
     description:

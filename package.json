@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test:integrity": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/node-aliases.mjs --test \"tests/integrity/**/*.test.ts\"",
+    "test:e2e": "node --env-file-if-exists=.env.local --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/node-aliases.mjs --test --test-concurrency=1 \"tests/e2e/**/*.test.ts\"",
+    "test:pr3": "npm run lint && npm run typecheck && npm run build && npm run test:integrity && npm run test:e2e"
   },
   "dependencies": {
     "next": "^16.4.3",

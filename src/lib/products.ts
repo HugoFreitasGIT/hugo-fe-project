@@ -1,8 +1,21 @@
-import { products } from "@/data/products";
-import type { Product } from "@/types/product";
+import { cache } from "react";
 
-// Reads from the local mock dataset for now. Kept async so it can later be
-// replaced by a real data source without changing its callers.
+import {
+  getStorefrontProduct,
+  getStorefrontProducts,
+} from "@/lib/shopify/storefront-products";
+import type { Product, ProductDetail } from "@/types/product";
+
+// Reads the live catalog from the Shopify Storefront API. Errors propagate to
+// the route's error boundary; there is deliberately no fallback to the local
+// mock catalog (src/data/products.ts), which now only serves seeding and tests.
 export async function getProducts(): Promise<Product[]> {
-  return products;
+  return getStorefrontProducts();
 }
+
+// Returns null when no product exists for the handle. Wrapped in React's
+// cache() so generateMetadata and the page share one request per render.
+export const getProduct = cache(
+  async (handle: string): Promise<ProductDetail | null> =>
+    getStorefrontProduct(handle),
+);

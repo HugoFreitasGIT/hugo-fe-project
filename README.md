@@ -68,13 +68,49 @@ http://localhost:3000
 
 ## Environment Variables
 
-Environment-specific configuration will be handled through environment variables.
+Create a `.env.local` file in the project root (it is git-ignored). All variables are server-side only; never prefix them with `NEXT_PUBLIC_`.
 
-A `.env.example` file will document the variables required to run the application locally.
+| Variable                           | Used by                                       | Required |
+| ---------------------------------- | --------------------------------------------- | -------- |
+| `SHOPIFY_STORE_DOMAIN`             | Storefront and Admin API (`*.myshopify.com`)  | Yes      |
+| `SHOPIFY_STOREFRONT_PRIVATE_TOKEN` | Storefront API: product listing and pages     | Yes      |
+| `SHOPIFY_API_VERSION`              | Both APIs (defaults to `2026-10`)             | No       |
+| `SHOPIFY_CLIENT_ID`                | Admin API: seed script and status route only  | For seeding |
+| `SHOPIFY_CLIENT_SECRET`            | Admin API: seed script and status route only  | For seeding |
+
+`/shop` and the product pages are generated at build time, so the Storefront variables must also be available when running `npm run build`.
 
 ## Testing
 
-The project will include basic automated testing covering important components, application logic and selected user flows.
+Tests use Node's built-in test runner (`node:test`) and need no extra dependencies.
+
+| Command                  | What it does                                                     | Needs Shopify |
+| ------------------------ | ---------------------------------------------------------------- | ------------- |
+| `npm run test:integrity` | Shopify → product conversion and data-integrity rules, with mocked Shopify responses | No |
+| `npm run test:e2e`       | End-to-end checks of the production build against the live store | Yes |
+| `npm run test:pr3`       | Lint, type check, production build, then both suites above       | Yes |
+
+### Integrity tests (`tests/integrity/`)
+
+Cover price conversion to cents, EUR-only validation, category mapping, image and alt-text handling, unknown handles, and the data-integrity rule that a catalog where every product is invalid is an error rather than an empty shop. Shopify is mocked, so these run anywhere without credentials.
+
+### End-to-end tests (`tests/e2e/`)
+
+These start `next start` on a free port and need:
+
+- a production build: run `npm run build` first (`npm run test:pr3` does this for you);
+- a `.env.local` with working Storefront credentials, since product pages and the 404 check query the real store;
+- Google Chrome or Chromium for the browser tests. Set `CHROME_PATH` if it is not installed in a standard location.
+
+They expect the store to contain the 9 products from `src/data/products.ts` (see `scripts/shopify-seed-products.ts`).
+
+| File                  | Coverage                                                                 |
+| --------------------- | ------------------------------------------------------------------------ |
+| `pages.test.ts`       | `/shop` links, every product page (title, price, category, description, image from the Shopify CDN), 404 status, no token in the HTML |
+| `navigation.test.ts`  | Real clicks in Chrome: product card → product page → back to `/shop`, browser back, the 404 page as users see it, mobile layout |
+| `error-states.test.ts`| The product error page when Shopify rejects requests (uses a deliberately invalid token for its own server only) |
+
+Each browser test uses a fresh temporary Chrome profile, which is deleted afterwards along with the test servers. Every command exits with a non-zero status if any check fails.
 
 ## Status
 

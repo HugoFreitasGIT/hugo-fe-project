@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import CartLink from "@/components/cart/CartLink";
+
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Shop", href: "/shop" },
@@ -41,24 +43,7 @@ export default function Header({ currentPath }: HeaderProps) {
           </ul>
         </nav>
 
-        <Link
-          href="#cart"
-          aria-label="Cart, 0 items"
-          className="col-start-2 row-start-1 flex items-center gap-2 justify-self-end text-sm md:col-start-3"
-        >
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={1.5}
-            className="size-5"
-          >
-            <path d="M5 8h14l-1 12H6L5 8Z" strokeLinejoin="round" />
-            <path d="M9 8V6a3 3 0 0 1 6 0v2" strokeLinecap="round" />
-          </svg>
-          <span className="tabular-nums">0</span>
-        </Link>
+        <CartLink isCurrent={currentPath === "/cart"} />
       </div>
     </header>
   );

@@ -14,6 +14,7 @@ type MockProduct = Record<string, unknown>;
 
 const IMAGE_A = "https://cdn.shopify.com/s/files/a.png?v=1";
 const IMAGE_B = "https://cdn.shopify.com/s/files/b.png?v=1";
+const VARIANT_ID = "gid://shopify/ProductVariant/11";
 
 function shopifyProduct(overrides: MockProduct = {}): MockProduct {
   return {
@@ -25,6 +26,7 @@ function shopifyProduct(overrides: MockProduct = {}): MockProduct {
     featuredImage: { url: IMAGE_A, altText: "Tall ceramic vase" },
     priceRange: { minVariantPrice: { amount: "64.0", currencyCode: "EUR" } },
     images: { nodes: [{ url: IMAGE_A, altText: "Tall ceramic vase" }] },
+    variants: { nodes: [{ id: VARIANT_ID, availableForSale: true }] },
     ...overrides,
   };
 }
@@ -165,5 +167,44 @@ describe("getStorefrontProduct", () => {
       { src: IMAGE_A, alt: "Tall ceramic vase" },
       { src: IMAGE_B, alt: "Arc Ceramic Vase" },
     ]);
+  });
+
+  test("exposes the first variant for the cart", async () => {
+    mockStorefront({
+      product: shopifyProduct({
+        variants: { nodes: [{ id: VARIANT_ID, availableForSale: false }] },
+      }),
+    });
+
+    const product = await getStorefrontProduct("arc-ceramic-vase");
+    assert.equal(product?.variantId, VARIANT_ID);
+    assert.equal(product?.availableForSale, false);
+  });
+
+  test("throws a data error when the product has no variant", async () => {
+    mockStorefront({ product: shopifyProduct({ variants: { nodes: [] } }) });
+    await assertDataError(
+      getStorefrontProduct("arc-ceramic-vase"),
+      /missing variant/,
+    );
+  });
+
+  test("keeps catalog requests cached in production", async () => {
+    let init: RequestInit | undefined;
+    globalThis.fetch = async (_input, requestInit) => {
+      init = requestInit;
+      return new Response(JSON.stringify({ data: { products: { nodes: [] } } }));
+    };
+    const env = process.env as Record<string, string | undefined>;
+    const nodeEnv = env.NODE_ENV;
+    env.NODE_ENV = "production";
+    try {
+      await getStorefrontProducts();
+    } finally {
+      env.NODE_ENV = nodeEnv;
+    }
+
+    assert.equal(init?.cache, "force-cache");
+    assert.ok(!new Headers(init?.headers).has("Shopify-Storefront-Buyer-IP"));
   });
 });

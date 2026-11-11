@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import AddToCartButton from "@/components/cart/AddToCartButton";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { formatPrice } from "@/lib/format-price";
@@ -52,7 +53,8 @@ export default async function ProductPage({
 
   if (!product) notFound();
 
-  const { name, description, price, category, images } = product;
+  const { name, description, price, category, images, variantId, availableForSale } =
+    product;
   const [mainImage, ...otherImages] = images;
 
   return (
@@ -110,6 +112,13 @@ export default async function ProductPage({
                 {name}
               </h1>
               <p className="mt-5 text-xl tabular-nums">{formatPrice(price)}</p>
+
+              <div className="mt-8">
+                <AddToCartButton
+                  variantId={variantId}
+                  availableForSale={availableForSale}
+                />
+              </div>
 
               <div className="mt-8 border-t border-line pt-8">
                 <h2 className="sr-only">Description</h2>

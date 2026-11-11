@@ -7,6 +7,10 @@ import type { Product, ProductDetail, ProductImage } from "@/types/product";
 // Enough for the current catalog; add pagination when it grows past this.
 const PRODUCTS_LIMIT = 100;
 const PRODUCT_IMAGES_LIMIT = 10;
+// Every product in the catalog has exactly one variant (see the seed script),
+// so the first variant is the one added to the cart. Products with several
+// variants (sizes, colours) would need a variant picker; not supported yet.
+const PRODUCT_VARIANTS_LIMIT = 1;
 
 const PRODUCT_FIELDS = /* GraphQL */ `
   fragment ProductFields on Product {
@@ -41,13 +45,23 @@ const PRODUCTS_QUERY = /* GraphQL */ `
 
 const PRODUCT_BY_HANDLE_QUERY = /* GraphQL */ `
   ${PRODUCT_FIELDS}
-  query StorefrontProductByHandle($handle: String!, $imagesFirst: Int!) {
+  query StorefrontProductByHandle(
+    $handle: String!
+    $imagesFirst: Int!
+    $variantsFirst: Int!
+  ) {
     product(handle: $handle) {
       ...ProductFields
       images(first: $imagesFirst) {
         nodes {
           url
           altText
+        }
+      }
+      variants(first: $variantsFirst) {
+        nodes {
+          id
+          availableForSale
         }
       }
     }
@@ -72,9 +86,14 @@ type StorefrontProductsData = {
   products: { nodes: StorefrontProduct[] };
 };
 
+type StorefrontVariant = { id: string; availableForSale: boolean };
+
 type StorefrontProductByHandleData = {
   product:
-    | (StorefrontProduct & { images: { nodes: StorefrontImage[] } })
+    | (StorefrontProduct & {
+        images: { nodes: StorefrontImage[] };
+        variants: { nodes: StorefrontVariant[] };
+      })
     | null;
 };
 
@@ -86,7 +105,7 @@ const toSlug = (value: string) =>
     .replace(/^-+|-+$/g, "");
 
 // Converts a decimal string such as "64.0" to integer cents (6400).
-function toCents(amount: string): number | null {
+export function toCents(amount: string): number | null {
   if (!/^\d+(\.\d{1,2})?$/.test(amount)) return null;
   return Math.round(Number(amount) * 100);
 }
@@ -158,7 +177,11 @@ export async function getStorefrontProduct(
 ): Promise<ProductDetail | null> {
   const data = await shopifyStorefrontFetch<StorefrontProductByHandleData>(
     PRODUCT_BY_HANDLE_QUERY,
-    { handle, imagesFirst: PRODUCT_IMAGES_LIMIT },
+    {
+      handle,
+      imagesFirst: PRODUCT_IMAGES_LIMIT,
+      variantsFirst: PRODUCT_VARIANTS_LIMIT,
+    },
   );
 
   const node = data.product;
@@ -172,10 +195,23 @@ export async function getStorefrontProduct(
     );
   }
 
+  const variant = node.variants.nodes[0];
+  if (!variant?.id) {
+    throw new ShopifyError(
+      "data",
+      `Product "${node.handle}" failed validation: missing variant.`,
+    );
+  }
+
   // Start with the featured image, followed by any others in Shopify's order.
   const otherImages = node.images.nodes
     .filter((image) => image.url && image.url !== result.image.src)
     .map((image) => toImage(image, result.name));
 
-  return { ...result, images: [result.image, ...otherImages] };
+  return {
+    ...result,
+    images: [result.image, ...otherImages],
+    variantId: variant.id,
+    availableForSale: variant.availableForSale,
+  };
 }

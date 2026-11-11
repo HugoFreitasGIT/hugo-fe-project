@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+
+import CartProvider from "@/components/cart/CartProvider";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -26,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
-        {children}
+        <CartProvider>{children}</CartProvider>
       </body>
     </html>
   );

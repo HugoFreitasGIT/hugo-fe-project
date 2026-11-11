@@ -20,3 +20,15 @@ export function parseStoreDomain(value: string): string {
   }
   return host;
 }
+
+/** The configured store host, e.g. "store.myshopify.com". */
+export function getStoreDomain(): string {
+  const value = process.env.SHOPIFY_STORE_DOMAIN?.trim();
+  if (!value) {
+    throw new ShopifyError(
+      "config",
+      "Missing Shopify environment variables: SHOPIFY_STORE_DOMAIN.",
+    );
+  }
+  return parseStoreDomain(value);
+}

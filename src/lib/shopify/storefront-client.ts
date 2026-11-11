@@ -6,10 +6,18 @@ import { ShopifyError } from "@/lib/shopify/errors";
 // Minimal Shopify Storefront GraphQL client using a private access token.
 // The token is only sent in a request header and never appears in errors.
 //
-// Catalog queries are not buyer-specific, so the Shopify-Storefront-Buyer-IP
-// header is not sent. Add it for buyer-driven requests such as the cart.
+// Catalog queries are not buyer-specific and are cached. Buyer-driven requests
+// such as the cart opt out of caching and may pass the buyer's IP, which
+// Shopify uses for rate limiting and fraud checks instead of the server's IP.
 
 const REVALIDATE_SECONDS = 3600;
+
+export type StorefrontRequestOptions = {
+  /** "no-store" bypasses the catalog cache, e.g. for carts. */
+  cache?: "no-store";
+  /** A validated buyer IP, sent as Shopify-Storefront-Buyer-IP. */
+  buyerIp?: string;
+};
 
 type GraphQLResponse<TData> = {
   data?: TData;
@@ -41,7 +49,8 @@ function getConfig() {
 
 // No caching while developing; cache for an hour in production. Shopify's
 // GraphQL API only accepts POST, which Next.js caches only when opted in.
-function getCacheOptions(): RequestInit {
+function getCacheOptions(cache: StorefrontRequestOptions["cache"]): RequestInit {
+  if (cache === "no-store") return { cache: "no-store" };
   return process.env.NODE_ENV === "production"
     ? { cache: "force-cache", next: { revalidate: REVALIDATE_SECONDS } }
     : { cache: "no-store" };
@@ -54,6 +63,7 @@ function getCacheOptions(): RequestInit {
 export async function shopifyStorefrontFetch<TData>(
   query: string,
   variables?: Record<string, unknown>,
+  options: StorefrontRequestOptions = {},
 ): Promise<TData> {
   const config = getConfig();
 
@@ -67,9 +77,10 @@ export async function shopifyStorefrontFetch<TData>(
           "Content-Type": "application/json",
           Accept: "application/json",
           "Shopify-Storefront-Private-Token": config.privateToken,
+          ...(options.buyerIp && { "Shopify-Storefront-Buyer-IP": options.buyerIp }),
         },
         body: JSON.stringify({ query, variables }),
-        ...getCacheOptions(),
+        ...getCacheOptions(options.cache),
       },
     );
   } catch {

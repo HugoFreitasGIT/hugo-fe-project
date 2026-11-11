@@ -30,4 +30,10 @@ export type Product = {
 export type ProductDetail = Product & {
   /** All product images, starting with the main image. */
   images: ProductImage[];
+  /**
+   * Shopify variant (merchandise) ID added to the cart. Products currently
+   * have a single variant, so this is always the first one.
+   */
+  variantId: string;
+  availableForSale: boolean;
 };

@@ -4,8 +4,13 @@ import { ShopifyError } from "@/lib/shopify/errors";
 import { shopifyStorefrontFetch } from "@/lib/shopify/storefront-client";
 import type { Product, ProductDetail, ProductImage } from "@/types/product";
 
-// Enough for the current catalog; add pagination when it grows past this.
-const PRODUCTS_LIMIT = 100;
+// The catalog is read in pages of Shopify's maximum size, following cursors.
+// /shop filters and sorts the whole catalog in memory, so it is capped: past
+// MAX_PRODUCT_PAGES pages (1,000 products) the request fails instead of
+// returning an incomplete catalog. At that size, filtering, sorting and
+// pagination must move into the Shopify query instead.
+export const PRODUCTS_PAGE_SIZE = 250;
+export const MAX_PRODUCT_PAGES = 4;
 const PRODUCT_IMAGES_LIMIT = 10;
 // Every product in the catalog has exactly one variant (see the seed script),
 // so the first variant is the one added to the cart. Products with several
@@ -34,10 +39,15 @@ const PRODUCT_FIELDS = /* GraphQL */ `
 
 const PRODUCTS_QUERY = /* GraphQL */ `
   ${PRODUCT_FIELDS}
-  query StorefrontProducts($first: Int!) {
-    products(first: $first) {
+  query StorefrontProducts($first: Int!, $after: String) {
+    # ID order is Shopify's default; explicit so cursors stay stable.
+    products(first: $first, after: $after, sortKey: ID) {
       nodes {
         ...ProductFields
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
       }
     }
   }
@@ -83,7 +93,10 @@ type StorefrontProduct = {
 };
 
 type StorefrontProductsData = {
-  products: { nodes: StorefrontProduct[] };
+  products: {
+    nodes: StorefrontProduct[];
+    pageInfo: { hasNextPage: boolean; endCursor: string | null };
+  };
 };
 
 type StorefrontVariant = { id: string; availableForSale: boolean };
@@ -141,13 +154,64 @@ function toProduct(node: StorefrontProduct): Product | string {
   };
 }
 
-export async function getStorefrontProducts(): Promise<Product[]> {
-  const data = await shopifyStorefrontFetch<StorefrontProductsData>(
-    PRODUCTS_QUERY,
-    { first: PRODUCTS_LIMIT },
-  );
+// Fetches every product, page by page. Any failed page fails the whole call,
+// so callers never receive a partial catalog.
+async function fetchAllProductNodes(): Promise<StorefrontProduct[]> {
+  const nodes: StorefrontProduct[] = [];
+  const usedCursors = new Set<string>();
+  const seenIds = new Set<string>();
+  let after: string | null = null;
 
-  const nodes = data.products.nodes;
+  for (let page = 1; page <= MAX_PRODUCT_PAGES; page++) {
+    const data: StorefrontProductsData = await shopifyStorefrontFetch<StorefrontProductsData>(
+      PRODUCTS_QUERY,
+      { first: PRODUCTS_PAGE_SIZE, after },
+    );
+    const { nodes: pageNodes, pageInfo } = data.products;
+    for (const node of pageNodes) {
+      // Each page is cached separately, so pages may come from different
+      // moments. Shopify cursors are opaque and give no guarantee that such
+      // pages fit together. A product on two pages is the visible sign that
+      // they do not (the same shift can also skip products, undetectably),
+      // so fail instead of returning an inconsistent catalog.
+      if (seenIds.has(node.id)) {
+        throw new ShopifyError(
+          "data",
+          `Product "${node.handle}" appeared again on page ${page}; the catalog pages are inconsistent.`,
+        );
+      }
+      seenIds.add(node.id);
+      nodes.push(node);
+    }
+
+    if (!pageInfo.hasNextPage) return nodes;
+
+    const cursor = pageInfo.endCursor;
+    if (!cursor) {
+      throw new ShopifyError(
+        "data",
+        `Shopify reported more products after page ${page} but returned no cursor.`,
+      );
+    }
+    if (usedCursors.has(cursor)) {
+      throw new ShopifyError(
+        "data",
+        `Shopify returned a repeated cursor after page ${page}; stopping to avoid an endless loop.`,
+      );
+    }
+    usedCursors.add(cursor);
+    after = cursor;
+  }
+
+  throw new ShopifyError(
+    "data",
+    `The catalog has more than ${MAX_PRODUCT_PAGES * PRODUCTS_PAGE_SIZE} products, the most /shop can ` +
+      "filter and sort in memory. Move filtering, sorting and pagination to the Shopify query.",
+  );
+}
+
+export async function getStorefrontProducts(): Promise<Product[]> {
+  const nodes = await fetchAllProductNodes();
   const products: Product[] = [];
   for (const node of nodes) {
     const result = toProduct(node);

@@ -9,9 +9,9 @@ import type { Product, ProductDetail } from "@/types/product";
 // Reads the live catalog from the Shopify Storefront API. Errors propagate to
 // the route's error boundary; there is deliberately no fallback to the local
 // mock catalog (src/data/products.ts), which now only serves seeding and tests.
-export async function getProducts(): Promise<Product[]> {
-  return getStorefrontProducts();
-}
+// Wrapped in React's cache() so generateMetadata and the /shop page share one
+// request per render.
+export const getProducts = cache(async (): Promise<Product[]> => getStorefrontProducts());
 
 // Returns null when no product exists for the handle. Wrapped in React's
 // cache() so generateMetadata and the page share one request per render.

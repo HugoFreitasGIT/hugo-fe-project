@@ -58,7 +58,7 @@ export default function CategorySection() {
                 {description}
               </p>
               <Link
-                href={`#category-${slug}`}
+                href={`/shop?category=${slug}`}
                 className="mt-4 inline-flex w-fit items-center gap-2 text-sm font-medium underline decoration-line underline-offset-4 transition-colors hover:decoration-ink"
               >
                 Explore {name}

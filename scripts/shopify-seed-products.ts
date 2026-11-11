@@ -1,15 +1,22 @@
 // Seeds the Shopify store with the local NOMA catalog (src/data/products.ts).
 //
 // Idempotent: products are looked up by handle first and never duplicated.
-// Existing products are left untouched, except that a missing image is attached.
+// Existing products are left untouched, except that a missing image is attached
+// and a product missing from the Headless sales channel is published to it.
+//
+// Every product is published to the Headless channel, which the storefront's
+// Storefront API token reads from, and verification checks that the Storefront
+// API returns it. The Admin app therefore needs the read_products,
+// write_products, read_publications and write_publications scopes.
 //
 // Usage:
 //   node --env-file=.env.local --import ./scripts/node-aliases.mjs \
-//     scripts/shopify-seed-products.ts [--images-dir <dir>] [--dry-run]
+//     scripts/shopify-seed-products.ts [--images-dir <dir>] [--dry-run] [--only <handle>]
 //
 // Images default to public/images/products/, which holds one PNG per product
 // named `<handle>.png`. Use --images-dir to read them from elsewhere.
 // --dry-run makes no changes; it also checks every product's PNG.
+// --only seeds and verifies a single product, e.g. to try one new product first.
 
 import { readFile, stat } from "node:fs/promises";
 import { join, resolve } from "node:path";
@@ -18,6 +25,7 @@ import { parseArgs } from "node:util";
 
 import { products } from "@/data/products";
 import { ShopifyError, shopifyAdminFetch } from "@/lib/shopify/admin-client";
+import { shopifyStorefrontFetch } from "@/lib/shopify/storefront-client";
 import type { Product } from "@/types/product";
 
 const VENDOR = "NOMA";
@@ -26,6 +34,14 @@ const DEFAULT_IMAGES_DIR = fileURLToPath(
 );
 const MEDIA_POLL_ATTEMPTS = 20;
 const MEDIA_POLL_INTERVAL_MS = 3000;
+// The storefront reads products from the publication of Shopify's Headless
+// sales channel app. It is identified by the app's handle, since publication
+// titles are generated ("Channel Catalog … for <storefront name>").
+const HEADLESS_CHANNEL = "Headless";
+const HEADLESS_APP_HANDLE = "headless-storefronts";
+// Publishing reaches the Storefront API after a short delay.
+const STOREFRONT_POLL_ATTEMPTS = 10;
+const STOREFRONT_POLL_INTERVAL_MS = 3000;
 
 type UserError = { field?: string[] | null; message: string };
 
@@ -50,7 +66,16 @@ type Result = {
   handle: string;
   outcome: Outcome;
   imageAttached: boolean;
+  /** Published to Headless by this run (or would be, in a dry run). */
+  publishedNow: boolean;
   error?: string;
+};
+
+type StorefrontProduct = {
+  title: string;
+  description: string;
+  priceRange: { minVariantPrice: { amount: string; currencyCode: string } };
+  featuredImage: { url: string; altText: string | null } | null;
 };
 
 const PRODUCT_FIELDS = /* GraphQL */ `
@@ -243,6 +268,92 @@ async function createProduct(product: Product, imageSource: string) {
 
   assertNoUserErrors("Product creation", data.productSet.userErrors);
   if (!data.productSet.product) throw new Error("Product creation returned no product.");
+  return data.productSet.product.id;
+}
+
+// Finds the Headless sales channel. Fails early, before any product is
+// created, if it is missing or the app lacks the publication scopes.
+type PublicationNode = {
+  id: string;
+  catalog: { title: string; apps?: { nodes: { handle: string }[] } } | null;
+};
+
+async function getHeadlessPublicationId(): Promise<string> {
+  let nodes: PublicationNode[];
+  try {
+    const data = await shopifyAdminFetch<{ publications: { nodes: PublicationNode[] } }>(
+      `query SeedPublications {
+        publications(first: 50) {
+          nodes {
+            id
+            catalog { title ... on AppCatalog { apps(first: 5) { nodes { handle } } } }
+          }
+        }
+      }`,
+    );
+    nodes = data.publications.nodes;
+  } catch (error) {
+    throw new Error(
+      `Could not read the store's sales channels (${describeError(error)}). ` +
+        "The Admin app needs the read_publications and write_publications scopes.",
+    );
+  }
+
+  // Exactly one: with several Headless storefronts the script cannot tell
+  // which one the Storefront API token belongs to, so it stops instead.
+  const matches = nodes.filter((node) =>
+    node.catalog?.apps?.nodes.some((app) => app.handle === HEADLESS_APP_HANDLE),
+  );
+  if (matches.length !== 1) {
+    const titles = nodes.map((node) => node.catalog?.title ?? "(untitled)").join(", ");
+    throw new Error(
+      `Expected exactly one "${HEADLESS_CHANNEL}" sales channel, found ${matches.length}. Channels: ${titles || "none"}.`,
+    );
+  }
+  return matches[0].id;
+}
+
+async function isPublished(productId: string, publicationId: string): Promise<boolean> {
+  const data = await shopifyAdminFetch<{
+    product: { publishedOnPublication: boolean } | null;
+  }>(
+    `query SeedIsPublished($id: ID!, $publicationId: ID!) {
+      product(id: $id) { publishedOnPublication(publicationId: $publicationId) }
+    }`,
+    { id: productId, publicationId },
+  );
+  return data.product?.publishedOnPublication ?? false;
+}
+
+async function publish(productId: string, publicationId: string) {
+  const data = await shopifyAdminFetch<{
+    publishablePublish: { userErrors: UserError[] };
+  }>(
+    `mutation SeedPublish($id: ID!, $input: [PublicationInput!]!) {
+      publishablePublish(id: $id, input: $input) {
+        userErrors { field message }
+      }
+    }`,
+    { id: productId, input: [{ publicationId }] },
+  );
+  assertNoUserErrors("Publishing", data.publishablePublish.userErrors);
+}
+
+// Reads the product the way the storefront does, bypassing any cache.
+async function findOnStorefront(handle: string): Promise<StorefrontProduct | null> {
+  const data = await shopifyStorefrontFetch<{ product: StorefrontProduct | null }>(
+    `query SeedStorefrontProduct($handle: String!) {
+      product(handle: $handle) {
+        title
+        description
+        priceRange { minVariantPrice { amount currencyCode } }
+        featuredImage { url altText }
+      }
+    }`,
+    { handle },
+    { cache: "no-store" },
+  );
+  return data.product;
 }
 
 async function attachImage(productId: string, product: Product, imageSource: string) {
@@ -271,6 +382,7 @@ async function attachImage(productId: string, product: Product, imageSource: str
 async function seedProduct(
   product: Product,
   imagesDir: string,
+  publicationId: string,
   dryRun: boolean,
 ): Promise<Result> {
   const handle = product.slug;
@@ -278,28 +390,32 @@ async function seedProduct(
 
   if (existing) {
     const hasImage = existing.media.nodes.length > 0;
+    const publishedNow = !(await isPublished(existing.id, publicationId));
     if (dryRun) {
       // Still confirm the local image is available, so a dry run proves the
       // seed is reproducible from the images directory.
       await readPng(imagesDir, handle);
-      return { handle, outcome: "existing", imageAttached: hasImage };
+      return { handle, outcome: "existing", imageAttached: hasImage, publishedNow };
     }
-    if (hasImage) {
-      return { handle, outcome: "existing", imageAttached: true };
+    if (!hasImage) {
+      // Recover from an earlier partial run: attach the missing image.
+      const { bytes, filename } = await readPng(imagesDir, handle);
+      await attachImage(existing.id, product, await stageImage(bytes, filename));
     }
-    // Recover from an earlier partial run: attach the missing image only.
-    const { bytes, filename } = await readPng(imagesDir, handle);
-    await attachImage(existing.id, product, await stageImage(bytes, filename));
-    return { handle, outcome: "existing", imageAttached: true };
+    // Also recovers a product created before publishing was automated, or by
+    // a run that stopped between creating and publishing.
+    if (publishedNow) await publish(existing.id, publicationId);
+    return { handle, outcome: "existing", imageAttached: true, publishedNow };
   }
 
   // Validate and upload the image before creating the product, so a bad image
   // never leaves a product behind without one.
   const { bytes, filename } = await readPng(imagesDir, handle);
-  if (dryRun) return { handle, outcome: "created", imageAttached: false };
+  if (dryRun) return { handle, outcome: "created", imageAttached: false, publishedNow: true };
 
-  await createProduct(product, await stageImage(bytes, filename));
-  return { handle, outcome: "created", imageAttached: true };
+  const productId = await createProduct(product, await stageImage(bytes, filename));
+  await publish(productId, publicationId);
+  return { handle, outcome: "created", imageAttached: true, publishedNow: true };
 }
 
 // Compares a Shopify product against the catalog; returns a list of problems.
@@ -337,6 +453,36 @@ function verifyProduct(product: Product, remote: ShopifyProduct | null): string[
   return problems;
 }
 
+// Compares what the Storefront API returns against the catalog.
+function verifyStorefront(product: Product, storefront: StorefrontProduct | null): string[] {
+  if (!storefront) return ["not returned by the Storefront API"];
+
+  const problems: string[] = [];
+  const check = (label: string, actual: unknown, expected: unknown) => {
+    if (actual !== expected) {
+      problems.push(`storefront ${label}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`);
+    }
+  };
+  const { amount, currencyCode } = storefront.priceRange.minVariantPrice;
+  check("title", storefront.title, product.name);
+  check("description", storefront.description.trim(), product.description);
+  check("price", `${Number(amount).toFixed(2)} ${currencyCode}`, `${priceFor(product)} ${product.price.currency}`);
+  check("image alt", storefront.featuredImage?.altText, product.image.alt);
+  if (!storefront.featuredImage?.url.startsWith("https://cdn.shopify.com/")) {
+    problems.push("storefront image: missing or not on the Shopify CDN");
+  }
+  return problems;
+}
+
+async function waitForStorefront(handle: string): Promise<StorefrontProduct | null> {
+  for (let attempt = 1; attempt <= STOREFRONT_POLL_ATTEMPTS; attempt++) {
+    const storefront = await findOnStorefront(handle);
+    if (storefront || attempt === STOREFRONT_POLL_ATTEMPTS) return storefront;
+    await sleep(STOREFRONT_POLL_INTERVAL_MS);
+  }
+  return null;
+}
+
 async function waitForMedia(handle: string): Promise<ShopifyProduct | null> {
   for (let attempt = 1; attempt <= MEDIA_POLL_ATTEMPTS; attempt++) {
     const remote = await findProductByHandle(handle);
@@ -354,8 +500,24 @@ async function main() {
     options: {
       "images-dir": { type: "string" },
       "dry-run": { type: "boolean", default: false },
+      only: { type: "string" },
     },
   });
+
+  // Handles and SKUs (derived from handles) must be unique across the catalog.
+  const duplicates = products
+    .map((p) => p.slug)
+    .filter((slug, index, slugs) => slugs.indexOf(slug) !== index);
+  if (duplicates.length > 0) {
+    throw new Error(`Duplicate handles in the catalog: ${[...new Set(duplicates)].join(", ")}.`);
+  }
+
+  const selected = values.only
+    ? products.filter((p) => p.slug === values.only)
+    : products;
+  if (selected.length === 0) {
+    throw new Error(`--only: no catalog product has the handle "${values.only}".`);
+  }
 
   const imagesDir = resolve(values["images-dir"] ?? DEFAULT_IMAGES_DIR);
   if (!(await stat(imagesDir).catch(() => null))?.isDirectory()) {
@@ -373,17 +535,22 @@ async function main() {
     );
   }
 
-  console.log(`${dryRun ? "[dry run] " : ""}Seeding ${products.length} products (store currency ${shopCurrency})…`);
+  const publicationId = await getHeadlessPublicationId();
+
+  console.log(`${dryRun ? "[dry run] " : ""}Seeding ${selected.length} products (store currency ${shopCurrency})…`);
 
   const results: Result[] = [];
-  for (const product of products) {
+  for (const product of selected) {
     try {
-      const result = await seedProduct(product, imagesDir, dryRun);
+      const result = await seedProduct(product, imagesDir, publicationId, dryRun);
       results.push(result);
       const verb = result.outcome === "created" ? (dryRun ? "would create" : "created") : "already present";
-      console.log(`  ${product.slug}: ${verb}`);
+      const publishing = result.publishedNow
+        ? `, ${dryRun ? "would publish" : "published"} to ${HEADLESS_CHANNEL}`
+        : result.outcome === "existing" ? `, already on ${HEADLESS_CHANNEL}` : "";
+      console.log(`  ${product.slug}: ${verb}${publishing}`);
     } catch (error) {
-      results.push({ handle: product.slug, outcome: "failed", imageAttached: false, error: describeError(error) });
+      results.push({ handle: product.slug, outcome: "failed", imageAttached: false, publishedNow: false, error: describeError(error) });
       console.log(`  ${product.slug}: FAILED — ${describeError(error)}`);
     }
   }
@@ -395,10 +562,15 @@ async function main() {
 
   if (dryRun) return;
 
-  console.log("\nVerifying against Shopify…");
+  console.log(`\nVerifying against Shopify (Admin, ${HEADLESS_CHANNEL} channel and Storefront API)…`);
   let problemCount = 0;
-  for (const product of products) {
-    const problems = verifyProduct(product, await waitForMedia(product.slug));
+  for (const product of selected) {
+    const remote = await waitForMedia(product.slug);
+    const problems = verifyProduct(product, remote);
+    if (remote && !(await isPublished(remote.id, publicationId))) {
+      problems.push(`not published to ${HEADLESS_CHANNEL}`);
+    }
+    problems.push(...verifyStorefront(product, await waitForStorefront(product.slug)));
     problemCount += problems.length;
     console.log(`  ${product.slug}: ${problems.length === 0 ? "OK" : problems.join("; ")}`);
   }
@@ -407,7 +579,7 @@ async function main() {
     process.exitCode = 1;
     console.log("\nSome products need attention (see above).");
   } else {
-    console.log(`\nAll ${products.length} products verified.`);
+    console.log(`\nAll ${selected.length} products verified.`);
   }
 }
 

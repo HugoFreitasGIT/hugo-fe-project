@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    agentUpgrade: "security",
+  },
   images: {
     // Product images served by the Shopify CDN. `search` is left unset because
     // Shopify image URLs carry a `?v=` version query string.

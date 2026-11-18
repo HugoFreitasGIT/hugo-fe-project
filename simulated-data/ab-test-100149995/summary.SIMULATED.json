@@ -1,0 +1,130 @@
+{
+  "data_source": "SIMULATED",
+  "notice": "SIMULATED DATA - generated offline for presentation purposes. These are NOT real Convert Experiences results and must not be reported as experiment outcomes. No data was sent to or read from Convert.",
+  "generator": {
+    "version": "1.0.0",
+    "seed": 20261118,
+    "script": "generate.mjs"
+  },
+  "labels": {
+    "experienceId": "100149995",
+    "goal": {
+      "id": "100163295",
+      "name": "Hero CTA Click",
+      "selector": "section[aria-labelledby=\"hero-heading\"] a[href=\"/shop\"]"
+    },
+    "note": "IDs are labels matching the real experiment's setup; no values came from Convert."
+  },
+  "assumptions": {
+    "sessions": 200,
+    "allocationToVariation1": 0.5,
+    "targetHeroCtaRate": {
+      "original": 0.12,
+      "variation1": 0.16
+    },
+    "pNoInteraction": 0.3,
+    "oneSessionPerVisitor": true,
+    "period": {
+      "start": "2026-11-04",
+      "days": 14,
+      "fictional": true
+    }
+  },
+  "totals": {
+    "sessions": 200,
+    "events": 1301
+  },
+  "assignment": {
+    "original": 106,
+    "variation1": 94,
+    "variation1Share": 0.47,
+    "srmChiSquare": 0.72,
+    "srmPValue": 0.39614390668469324
+  },
+  "variations": {
+    "original": {
+      "variationId": "1001239569",
+      "variationName": "Original",
+      "headline": "Fewer, better things for the way you live.",
+      "visitors": 106,
+      "heroCtaClicks": 10,
+      "heroCtaConversionRate": 0.09433962264150944,
+      "bounceRate": 0.5849056603773585,
+      "noInteractionRate": 0.330188679245283,
+      "scrolledAtLeast50Rate": 0.36792452830188677,
+      "reachedShopRate": 0.41509433962264153,
+      "shopEntries": {
+        "hero_cta": 10,
+        "header_nav": 19,
+        "category_card": 15
+      },
+      "sessionsWithProductView": 31,
+      "avgProductsViewed": 0.5849056603773585,
+      "avgPageviews": 2.292452830188679,
+      "medianDurationS": 32.5
+    },
+    "variation1": {
+      "variationId": "1001239570",
+      "variationName": "Variation 1",
+      "headline": "Make room for better living.",
+      "visitors": 94,
+      "heroCtaClicks": 20,
+      "heroCtaConversionRate": 0.2127659574468085,
+      "bounceRate": 0.5638297872340425,
+      "noInteractionRate": 0.3191489361702128,
+      "scrolledAtLeast50Rate": 0.3829787234042553,
+      "reachedShopRate": 0.43617021276595747,
+      "shopEntries": {
+        "hero_cta": 20,
+        "header_nav": 10,
+        "category_card": 11
+      },
+      "sessionsWithProductView": 27,
+      "avgProductsViewed": 0.5212765957446809,
+      "avgPageviews": 2.1914893617021276,
+      "medianDurationS": 33.5
+    }
+  },
+  "comparison": {
+    "metric": "Hero CTA conversion rate (sessions with a hero CTA click / visitors)",
+    "absoluteDifference": 0.11842633480529907,
+    "absoluteDifferenceCi95": [
+      0.01854154871251129,
+      0.2207273120598747
+    ],
+    "relativeLift": 1.2553191489361701,
+    "relativeLiftCi95": [
+      0.1127259960550604,
+      3.571174288720832
+    ],
+    "zTest": {
+      "z": 2.340965738961233,
+      "pValue": 0.019233930532984944
+    },
+    "fisherExactPValue": 0.02799705474179512,
+    "rateCi95": {
+      "original": [
+        0.052052502653285114,
+        0.165000867510098
+      ],
+      "variation1": [
+        0.14216879768507773,
+        0.30591792699304365
+      ]
+    },
+    "alpha": 0.05,
+    "significantAtAlpha": true,
+    "methods": {
+      "primaryTest": "Pooled two-proportion z-test, two-sided",
+      "robustnessTest": "Fisher's exact test, two-sided",
+      "absoluteDifferenceCi": "Newcombe hybrid score interval (method 10), 95%",
+      "relativeLiftCi": "Log risk ratio (Katz) interval, 95%",
+      "rateCi": "Wilson score interval, 95%"
+    }
+  },
+  "power": {
+    "powerToDetectAssumedEffect": 0.1277591864877393,
+    "visitorsPerVariationFor80PercentPower": 1181,
+    "minimumDetectableRateAt80PercentPower": 0.2767906775397466
+  }
+}

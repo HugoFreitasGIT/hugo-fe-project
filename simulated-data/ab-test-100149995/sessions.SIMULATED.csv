@@ -1,0 +1,201 @@
+data_source,session_id,visitor_id,experience_id,variation_id,variation_name,session_start,session_end,duration_s,device,traffic_source,visitor_type,landing_page,max_scroll_depth_pct,interacted,bounced,hero_cta_clicked,hero_cta_click_at,reached_shop,shop_entry,products_viewed,pageviews,exit_page
+SIMULATED,SIM-S-0001,SIM-V-0001,100149995,1001239570,Variation 1,2026-11-09T21:05:54.822Z,2026-11-09T21:07:23.805Z,89,mobile,organic_search,new,/,100,true,false,false,,true,category_card,1,3,/shop/woven-storage-basket
+SIMULATED,SIM-S-0002,SIM-V-0002,100149995,1001239569,Original,2026-11-07T13:59:07.195Z,2026-11-07T14:03:21.237Z,254,desktop,social,returning,/,50,true,false,false,,true,category_card,4,9,/shop/felt-desk-mat
+SIMULATED,SIM-S-0003,SIM-V-0003,100149995,1001239570,Variation 1,2026-11-15T18:53:50.289Z,2026-11-15T18:54:17.142Z,27,mobile,organic_search,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0004,SIM-V-0004,100149995,1001239569,Original,2026-11-10T21:57:27.651Z,2026-11-10T21:57:48.484Z,21,desktop,organic_search,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0005,SIM-V-0005,100149995,1001239570,Variation 1,2026-11-16T20:08:34.070Z,2026-11-16T20:08:53.077Z,19,mobile,organic_search,returning,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0006,SIM-V-0006,100149995,1001239570,Variation 1,2026-11-17T08:40:05.640Z,2026-11-17T08:40:42.832Z,37,mobile,social,new,/,50,true,false,false,,true,header_nav,0,2,/shop
+SIMULATED,SIM-S-0007,SIM-V-0007,100149995,1001239569,Original,2026-11-17T18:11:14.664Z,2026-11-17T18:11:28.051Z,13,desktop,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0008,SIM-V-0008,100149995,1001239569,Original,2026-11-16T20:45:03.893Z,2026-11-16T20:48:05.781Z,182,mobile,email,new,/,0,true,false,true,2026-11-16T20:45:19.685Z,true,hero_cta,3,7,/shop/arc-ceramic-vase
+SIMULATED,SIM-S-0009,SIM-V-0009,100149995,1001239569,Original,2026-11-12T21:03:30.105Z,2026-11-12T21:04:00.277Z,30,desktop,direct,new,/,50,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0010,SIM-V-0010,100149995,1001239570,Variation 1,2026-11-10T20:26:46.954Z,2026-11-10T20:27:02.291Z,15,desktop,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0011,SIM-V-0011,100149995,1001239569,Original,2026-11-17T12:03:08.323Z,2026-11-17T12:03:33.749Z,25,mobile,organic_search,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0012,SIM-V-0012,100149995,1001239570,Variation 1,2026-11-16T21:33:09.414Z,2026-11-16T21:33:57.357Z,48,mobile,direct,new,/,75,true,false,false,,true,category_card,0,2,/shop?category=kitchen
+SIMULATED,SIM-S-0013,SIM-V-0013,100149995,1001239569,Original,2026-11-15T15:29:15.744Z,2026-11-15T15:29:41.057Z,25,desktop,organic_search,returning,/,0,true,false,false,,true,header_nav,0,2,/shop
+SIMULATED,SIM-S-0014,SIM-V-0014,100149995,1001239570,Variation 1,2026-11-12T16:56:13.231Z,2026-11-12T16:56:44.492Z,31,mobile,organic_search,new,/,50,true,false,false,,true,category_card,0,2,/shop?category=home
+SIMULATED,SIM-S-0015,SIM-V-0015,100149995,1001239569,Original,2026-11-12T22:32:07.834Z,2026-11-12T22:32:35.429Z,28,mobile,organic_search,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0016,SIM-V-0016,100149995,1001239570,Variation 1,2026-11-17T17:07:07.507Z,2026-11-17T17:07:26.282Z,19,desktop,email,returning,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0017,SIM-V-0017,100149995,1001239569,Original,2026-11-14T10:35:54.007Z,2026-11-14T10:36:39.988Z,46,desktop,organic_search,new,/,100,true,false,false,,true,category_card,0,2,/shop?category=workspace
+SIMULATED,SIM-S-0018,SIM-V-0018,100149995,1001239569,Original,2026-11-15T07:08:44.758Z,2026-11-15T07:08:57.844Z,13,mobile,organic_search,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0019,SIM-V-0019,100149995,1001239569,Original,2026-11-05T21:24:18.370Z,2026-11-05T21:25:07.785Z,49,desktop,direct,new,/,100,true,false,false,,true,category_card,0,2,/shop?category=workspace
+SIMULATED,SIM-S-0020,SIM-V-0020,100149995,1001239570,Variation 1,2026-11-05T13:59:15.014Z,2026-11-05T13:59:54.676Z,40,mobile,social,new,/,75,true,false,false,,true,header_nav,0,2,/shop
+SIMULATED,SIM-S-0021,SIM-V-0021,100149995,1001239569,Original,2026-11-04T21:47:13.984Z,2026-11-04T21:47:33.896Z,20,desktop,email,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0022,SIM-V-0022,100149995,1001239569,Original,2026-11-14T12:55:21.917Z,2026-11-14T12:55:48.412Z,26,mobile,organic_search,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0023,SIM-V-0023,100149995,1001239570,Variation 1,2026-11-08T21:46:28.106Z,2026-11-08T21:47:11.274Z,43,mobile,organic_search,new,/,50,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0024,SIM-V-0024,100149995,1001239569,Original,2026-11-11T23:05:11.396Z,2026-11-11T23:08:14.611Z,183,desktop,direct,new,/,0,true,false,true,2026-11-11T23:05:23.665Z,true,hero_cta,3,7,/shop/round-wall-mirror
+SIMULATED,SIM-S-0025,SIM-V-0025,100149995,1001239570,Variation 1,2026-11-15T23:55:59.892Z,2026-11-15T23:56:49.824Z,50,desktop,email,new,/,25,true,false,false,,true,header_nav,0,2,/shop
+SIMULATED,SIM-S-0026,SIM-V-0026,100149995,1001239569,Original,2026-11-10T11:14:19.871Z,2026-11-10T11:20:01.202Z,341,mobile,email,new,/,50,true,false,false,,true,category_card,4,9,/shop/walnut-pen-tray
+SIMULATED,SIM-S-0027,SIM-V-0027,100149995,1001239569,Original,2026-11-09T15:35:26.716Z,2026-11-09T15:36:13.528Z,47,mobile,email,new,/,100,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0028,SIM-V-0028,100149995,1001239569,Original,2026-11-09T16:07:12.975Z,2026-11-09T16:10:30.572Z,198,mobile,social,new,/,25,true,false,false,,true,header_nav,3,7,/shop/bud-vase-trio
+SIMULATED,SIM-S-0029,SIM-V-0029,100149995,1001239569,Original,2026-11-10T12:48:45.831Z,2026-11-10T12:49:14.616Z,29,desktop,direct,returning,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0030,SIM-V-0030,100149995,1001239569,Original,2026-11-14T12:27:56.626Z,2026-11-14T12:29:58.482Z,122,mobile,direct,new,/,75,true,false,false,,true,category_card,1,3,/shop/oak-wall-shelf
+SIMULATED,SIM-S-0031,SIM-V-0031,100149995,1001239569,Original,2026-11-17T22:47:06.505Z,2026-11-17T22:47:36.180Z,30,mobile,organic_search,returning,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0032,SIM-V-0032,100149995,1001239569,Original,2026-11-06T19:21:29.223Z,2026-11-06T19:21:52.334Z,23,desktop,organic_search,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0033,SIM-V-0033,100149995,1001239570,Variation 1,2026-11-14T17:51:52.070Z,2026-11-14T17:53:48.232Z,116,mobile,social,new,/,100,true,false,false,,true,header_nav,1,3,/shop/oak-serving-board
+SIMULATED,SIM-S-0034,SIM-V-0034,100149995,1001239570,Variation 1,2026-11-14T14:48:03.471Z,2026-11-14T14:48:13.340Z,10,desktop,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0035,SIM-V-0035,100149995,1001239570,Variation 1,2026-11-14T08:54:25.471Z,2026-11-14T08:55:07.032Z,42,mobile,organic_search,new,/,25,true,false,true,2026-11-14T08:54:37.504Z,true,hero_cta,1,3,/shop/oak-wall-shelf
+SIMULATED,SIM-S-0036,SIM-V-0036,100149995,1001239570,Variation 1,2026-11-07T15:03:33.962Z,2026-11-07T15:04:32.134Z,58,mobile,direct,new,/,100,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0037,SIM-V-0037,100149995,1001239569,Original,2026-11-10T20:55:29.607Z,2026-11-10T20:55:51.124Z,22,desktop,organic_search,returning,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0038,SIM-V-0038,100149995,1001239570,Variation 1,2026-11-17T16:38:48.402Z,2026-11-17T16:39:38.827Z,50,mobile,social,new,/,0,true,false,true,2026-11-17T16:38:58.842Z,true,hero_cta,1,3,/shop/oak-serving-board
+SIMULATED,SIM-S-0039,SIM-V-0039,100149995,1001239570,Variation 1,2026-11-09T10:38:11.864Z,2026-11-09T10:38:57.587Z,46,desktop,direct,new,/,50,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0040,SIM-V-0040,100149995,1001239570,Variation 1,2026-11-04T19:47:41.185Z,2026-11-04T19:53:57.174Z,376,desktop,social,returning,/,0,true,false,true,2026-11-04T19:47:45.648Z,true,hero_cta,5,11,/shop/walnut-pen-tray
+SIMULATED,SIM-S-0041,SIM-V-0041,100149995,1001239570,Variation 1,2026-11-13T21:52:02.359Z,2026-11-13T21:52:25.136Z,23,mobile,email,returning,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0042,SIM-V-0042,100149995,1001239569,Original,2026-11-09T13:15:53.799Z,2026-11-09T13:16:57.001Z,63,mobile,organic_search,returning,/,25,true,false,true,2026-11-09T13:16:13.145Z,true,hero_cta,1,3,/shop/oak-serving-board
+SIMULATED,SIM-S-0043,SIM-V-0043,100149995,1001239569,Original,2026-11-15T08:09:16.008Z,2026-11-15T08:11:03.503Z,107,desktop,social,new,/,50,true,false,false,,true,category_card,1,3,/shop/walnut-pen-tray
+SIMULATED,SIM-S-0044,SIM-V-0044,100149995,1001239569,Original,2026-11-16T08:35:02.289Z,2026-11-16T08:35:48.537Z,46,mobile,direct,returning,/,75,true,false,false,,true,category_card,0,2,/shop?category=workspace
+SIMULATED,SIM-S-0045,SIM-V-0045,100149995,1001239569,Original,2026-11-04T23:47:51.897Z,2026-11-04T23:48:05.477Z,14,mobile,email,new,/,0,true,false,false,,true,header_nav,0,2,/shop
+SIMULATED,SIM-S-0046,SIM-V-0046,100149995,1001239570,Variation 1,2026-11-09T23:57:19.959Z,2026-11-09T23:57:31.772Z,12,mobile,email,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0047,SIM-V-0047,100149995,1001239569,Original,2026-11-15T07:16:56.481Z,2026-11-15T07:17:30.087Z,34,desktop,email,new,/,25,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0048,SIM-V-0048,100149995,1001239570,Variation 1,2026-11-07T21:04:37.112Z,2026-11-07T21:05:14.668Z,38,desktop,organic_search,returning,/,0,true,false,true,2026-11-07T21:04:49.423Z,true,hero_cta,0,2,/shop
+SIMULATED,SIM-S-0049,SIM-V-0049,100149995,1001239570,Variation 1,2026-11-07T08:35:16.445Z,2026-11-07T08:35:35.375Z,19,desktop,direct,returning,/,0,true,false,true,2026-11-07T08:35:24.887Z,true,hero_cta,0,2,/shop
+SIMULATED,SIM-S-0050,SIM-V-0050,100149995,1001239569,Original,2026-11-07T08:31:37.947Z,2026-11-07T08:31:54.531Z,17,mobile,direct,returning,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0051,SIM-V-0051,100149995,1001239569,Original,2026-11-12T19:11:20.326Z,2026-11-12T19:13:56.240Z,156,mobile,direct,new,/,100,true,false,false,,true,category_card,2,5,/shop/felt-laptop-sleeve
+SIMULATED,SIM-S-0052,SIM-V-0052,100149995,1001239570,Variation 1,2026-11-15T11:06:28.629Z,2026-11-15T11:06:54.371Z,26,mobile,email,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0053,SIM-V-0053,100149995,1001239569,Original,2026-11-11T13:24:42.251Z,2026-11-11T13:25:14.770Z,33,desktop,social,new,/,25,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0054,SIM-V-0054,100149995,1001239570,Variation 1,2026-11-15T16:19:40.624Z,2026-11-15T16:20:14.771Z,34,desktop,organic_search,new,/,25,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0055,SIM-V-0055,100149995,1001239569,Original,2026-11-09T15:44:08.532Z,2026-11-09T15:44:32.780Z,24,desktop,organic_search,new,/,25,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0056,SIM-V-0056,100149995,1001239569,Original,2026-11-16T17:35:22.354Z,2026-11-16T17:35:52.280Z,30,mobile,organic_search,new,/,75,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0057,SIM-V-0057,100149995,1001239570,Variation 1,2026-11-17T11:09:46.548Z,2026-11-17T11:09:59.995Z,13,desktop,social,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0058,SIM-V-0058,100149995,1001239570,Variation 1,2026-11-09T07:27:53.684Z,2026-11-09T07:28:49.783Z,56,mobile,organic_search,new,/,25,true,false,true,2026-11-09T07:28:16.800Z,true,hero_cta,1,3,/shop/orb-table-lamp
+SIMULATED,SIM-S-0059,SIM-V-0059,100149995,1001239570,Variation 1,2026-11-08T10:21:00.493Z,2026-11-08T10:21:40.627Z,40,desktop,email,new,/,25,true,false,true,2026-11-08T10:21:13.623Z,true,hero_cta,0,2,/shop
+SIMULATED,SIM-S-0060,SIM-V-0060,100149995,1001239570,Variation 1,2026-11-17T19:08:53.262Z,2026-11-17T19:09:17.807Z,25,mobile,organic_search,new,/,50,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0061,SIM-V-0061,100149995,1001239569,Original,2026-11-15T09:11:44.987Z,2026-11-15T09:12:08.068Z,23,mobile,organic_search,returning,/,25,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0062,SIM-V-0062,100149995,1001239570,Variation 1,2026-11-16T17:50:58.048Z,2026-11-16T17:51:21.068Z,23,mobile,email,returning,/,0,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0063,SIM-V-0063,100149995,1001239570,Variation 1,2026-11-17T13:53:15.433Z,2026-11-17T13:55:02.974Z,108,tablet,direct,new,/,0,true,false,true,2026-11-17T13:53:29.427Z,true,hero_cta,1,3,/shop/linen-throw
+SIMULATED,SIM-S-0064,SIM-V-0064,100149995,1001239569,Original,2026-11-10T13:43:22.065Z,2026-11-10T13:45:44.096Z,142,mobile,organic_search,new,/,75,true,false,false,,true,category_card,2,5,/shop/aluminium-task-light
+SIMULATED,SIM-S-0065,SIM-V-0065,100149995,1001239570,Variation 1,2026-11-11T19:31:22.902Z,2026-11-11T19:31:42.344Z,19,mobile,social,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0066,SIM-V-0066,100149995,1001239569,Original,2026-11-14T19:26:21.103Z,2026-11-14T19:26:40.258Z,19,mobile,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0067,SIM-V-0067,100149995,1001239569,Original,2026-11-17T18:17:07.161Z,2026-11-17T18:19:05.854Z,119,mobile,social,new,/,50,true,false,false,,true,header_nav,1,3,/shop/aluminium-task-light
+SIMULATED,SIM-S-0068,SIM-V-0068,100149995,1001239569,Original,2026-11-05T22:25:52.331Z,2026-11-05T22:26:20.625Z,28,mobile,social,new,/,50,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0069,SIM-V-0069,100149995,1001239570,Variation 1,2026-11-04T23:14:06.785Z,2026-11-04T23:15:34.820Z,88,tablet,email,new,/,100,true,false,false,,true,category_card,1,3,/shop/beech-utensil-set
+SIMULATED,SIM-S-0070,SIM-V-0070,100149995,1001239570,Variation 1,2026-11-07T11:35:24.658Z,2026-11-07T11:36:31.247Z,67,tablet,social,returning,/,100,true,false,false,,true,category_card,1,3,/shop/walnut-pen-tray
+SIMULATED,SIM-S-0071,SIM-V-0071,100149995,1001239569,Original,2026-11-09T17:55:02.630Z,2026-11-09T17:55:41.087Z,38,mobile,social,new,/,100,true,false,false,,true,header_nav,0,2,/shop
+SIMULATED,SIM-S-0072,SIM-V-0072,100149995,1001239569,Original,2026-11-15T22:22:05.143Z,2026-11-15T22:22:53.362Z,48,desktop,social,returning,/,50,true,false,false,,true,header_nav,0,2,/shop
+SIMULATED,SIM-S-0073,SIM-V-0073,100149995,1001239569,Original,2026-11-07T09:11:00.978Z,2026-11-07T09:11:47.850Z,47,desktop,email,new,/,75,true,false,false,,true,header_nav,0,2,/shop
+SIMULATED,SIM-S-0074,SIM-V-0074,100149995,1001239569,Original,2026-11-05T21:07:38.891Z,2026-11-05T21:08:04.587Z,26,mobile,direct,new,/,25,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0075,SIM-V-0075,100149995,1001239570,Variation 1,2026-11-04T10:21:31.149Z,2026-11-04T10:23:24.985Z,114,desktop,organic_search,new,/,100,true,false,false,,true,header_nav,1,3,/shop/felt-laptop-sleeve
+SIMULATED,SIM-S-0076,SIM-V-0076,100149995,1001239569,Original,2026-11-17T11:50:17.558Z,2026-11-17T11:50:45.403Z,28,mobile,organic_search,new,/,25,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0077,SIM-V-0077,100149995,1001239569,Original,2026-11-05T10:14:43.905Z,2026-11-05T10:15:07.715Z,24,mobile,organic_search,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0078,SIM-V-0078,100149995,1001239569,Original,2026-11-16T17:46:42.662Z,2026-11-16T17:47:03.516Z,21,mobile,social,returning,/,25,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0079,SIM-V-0079,100149995,1001239569,Original,2026-11-10T07:17:33.581Z,2026-11-10T07:18:11.366Z,38,desktop,social,new,/,25,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0080,SIM-V-0080,100149995,1001239570,Variation 1,2026-11-09T14:12:02.866Z,2026-11-09T14:12:16.941Z,14,desktop,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0081,SIM-V-0081,100149995,1001239569,Original,2026-11-12T09:05:31.542Z,2026-11-12T09:05:58.588Z,27,mobile,direct,new,/,50,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0082,SIM-V-0082,100149995,1001239569,Original,2026-11-10T23:42:54.431Z,2026-11-10T23:43:34.343Z,40,mobile,direct,new,/,75,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0083,SIM-V-0083,100149995,1001239569,Original,2026-11-12T15:44:36.699Z,2026-11-12T15:44:51.806Z,15,mobile,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0084,SIM-V-0084,100149995,1001239569,Original,2026-11-15T15:05:40.559Z,2026-11-15T15:05:59.128Z,19,mobile,organic_search,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0085,SIM-V-0085,100149995,1001239569,Original,2026-11-11T10:08:22.130Z,2026-11-11T10:08:41.415Z,19,desktop,direct,returning,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0086,SIM-V-0086,100149995,1001239570,Variation 1,2026-11-12T10:43:39.466Z,2026-11-12T10:44:03.911Z,24,mobile,direct,new,/,0,true,false,true,2026-11-12T10:43:44.882Z,true,hero_cta,0,2,/shop
+SIMULATED,SIM-S-0087,SIM-V-0087,100149995,1001239570,Variation 1,2026-11-13T21:42:55.091Z,2026-11-13T21:43:16.818Z,22,mobile,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0088,SIM-V-0088,100149995,1001239569,Original,2026-11-04T18:09:30.797Z,2026-11-04T18:09:48.810Z,18,mobile,organic_search,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0089,SIM-V-0089,100149995,1001239570,Variation 1,2026-11-11T07:36:06.344Z,2026-11-11T07:40:44.421Z,278,desktop,direct,returning,/,0,true,false,true,2026-11-11T07:36:18.290Z,true,hero_cta,5,11,/shop/marble-mortar-and-pestle
+SIMULATED,SIM-S-0090,SIM-V-0090,100149995,1001239569,Original,2026-11-09T17:23:29.347Z,2026-11-09T17:24:58.382Z,89,desktop,direct,returning,/,75,true,false,false,,true,header_nav,1,3,/shop/wool-cushion-cover
+SIMULATED,SIM-S-0091,SIM-V-0091,100149995,1001239569,Original,2026-11-10T11:08:46.138Z,2026-11-10T11:09:05.598Z,19,mobile,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0092,SIM-V-0092,100149995,1001239569,Original,2026-11-13T18:52:40.613Z,2026-11-13T18:53:18.058Z,37,mobile,organic_search,new,/,50,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0093,SIM-V-0093,100149995,1001239570,Variation 1,2026-11-08T17:54:47.642Z,2026-11-08T17:55:15.845Z,28,mobile,direct,returning,/,50,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0094,SIM-V-0094,100149995,1001239569,Original,2026-11-15T09:13:24.753Z,2026-11-15T09:13:57.374Z,33,tablet,organic_search,returning,/,0,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0095,SIM-V-0095,100149995,1001239570,Variation 1,2026-11-15T21:09:42.514Z,2026-11-15T21:10:06.165Z,24,mobile,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0096,SIM-V-0096,100149995,1001239570,Variation 1,2026-11-14T22:29:21.571Z,2026-11-14T22:29:33.281Z,12,desktop,organic_search,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0097,SIM-V-0097,100149995,1001239570,Variation 1,2026-11-08T23:02:30.093Z,2026-11-08T23:04:35.412Z,125,tablet,direct,new,/,0,true,false,true,2026-11-08T23:02:35.672Z,true,hero_cta,2,5,/shop/oak-monitor-stand
+SIMULATED,SIM-S-0098,SIM-V-0098,100149995,1001239570,Variation 1,2026-11-06T11:56:22.117Z,2026-11-06T11:56:38.875Z,17,mobile,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0099,SIM-V-0099,100149995,1001239570,Variation 1,2026-11-06T21:10:45.746Z,2026-11-06T21:11:14.195Z,28,mobile,direct,returning,/,50,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0100,SIM-V-0100,100149995,1001239570,Variation 1,2026-11-07T11:28:38.255Z,2026-11-07T11:30:50.826Z,133,mobile,direct,returning,/,75,true,false,false,,true,category_card,1,3,/shop/enamel-tea-kettle
+SIMULATED,SIM-S-0101,SIM-V-0101,100149995,1001239570,Variation 1,2026-11-13T16:39:37.124Z,2026-11-13T16:40:10.077Z,33,desktop,organic_search,new,/,0,true,false,true,2026-11-13T16:39:58.146Z,true,hero_cta,0,2,/shop
+SIMULATED,SIM-S-0102,SIM-V-0102,100149995,1001239569,Original,2026-11-07T17:27:13.531Z,2026-11-07T17:27:32.881Z,19,mobile,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0103,SIM-V-0103,100149995,1001239569,Original,2026-11-09T15:31:42.647Z,2026-11-09T15:32:54.630Z,72,mobile,organic_search,new,/,50,true,false,false,,true,header_nav,1,3,/shop/felt-laptop-sleeve
+SIMULATED,SIM-S-0104,SIM-V-0104,100149995,1001239570,Variation 1,2026-11-05T13:28:39.498Z,2026-11-05T13:29:09.898Z,30,mobile,email,new,/,50,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0105,SIM-V-0105,100149995,1001239569,Original,2026-11-07T07:39:01.063Z,2026-11-07T07:40:44.463Z,103,desktop,organic_search,returning,/,25,true,false,false,,true,header_nav,2,5,/shop/stoneware-mug-set
+SIMULATED,SIM-S-0106,SIM-V-0106,100149995,1001239569,Original,2026-11-17T18:10:42.808Z,2026-11-17T18:13:28.959Z,166,desktop,organic_search,new,/,50,true,false,false,,true,header_nav,2,5,/shop/pour-over-set
+SIMULATED,SIM-S-0107,SIM-V-0107,100149995,1001239569,Original,2026-11-04T16:43:23.305Z,2026-11-04T16:44:02.460Z,39,desktop,social,new,/,100,true,false,false,,true,category_card,0,2,/shop?category=home
+SIMULATED,SIM-S-0108,SIM-V-0108,100149995,1001239569,Original,2026-11-14T08:31:37.604Z,2026-11-14T08:32:12.257Z,35,mobile,direct,new,/,75,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0109,SIM-V-0109,100149995,1001239569,Original,2026-11-04T09:07:42.354Z,2026-11-04T09:08:22.115Z,40,mobile,organic_search,new,/,100,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0110,SIM-V-0110,100149995,1001239569,Original,2026-11-14T22:54:10.544Z,2026-11-14T22:54:58.885Z,48,mobile,email,new,/,100,true,false,false,,true,category_card,0,2,/shop?category=home
+SIMULATED,SIM-S-0111,SIM-V-0111,100149995,1001239570,Variation 1,2026-11-15T17:45:46.529Z,2026-11-15T17:45:58.851Z,12,mobile,social,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0112,SIM-V-0112,100149995,1001239570,Variation 1,2026-11-14T14:09:45.960Z,2026-11-14T14:10:14.541Z,29,mobile,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0113,SIM-V-0113,100149995,1001239570,Variation 1,2026-11-16T20:32:11.720Z,2026-11-16T20:33:16.356Z,65,tablet,social,returning,/,100,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0114,SIM-V-0114,100149995,1001239570,Variation 1,2026-11-16T11:13:13.324Z,2026-11-16T11:17:31.256Z,258,tablet,email,returning,/,100,true,false,false,,true,category_card,3,7,/shop/oak-monitor-stand
+SIMULATED,SIM-S-0115,SIM-V-0115,100149995,1001239570,Variation 1,2026-11-15T20:13:55.419Z,2026-11-15T20:14:41.502Z,46,desktop,email,new,/,25,true,false,true,2026-11-15T20:14:15.833Z,true,hero_cta,0,2,/shop
+SIMULATED,SIM-S-0116,SIM-V-0116,100149995,1001239569,Original,2026-11-10T08:37:22.081Z,2026-11-10T08:37:31.570Z,9,mobile,organic_search,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0117,SIM-V-0117,100149995,1001239570,Variation 1,2026-11-04T22:05:29.300Z,2026-11-04T22:05:44.929Z,16,mobile,social,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0118,SIM-V-0118,100149995,1001239569,Original,2026-11-07T07:00:39.482Z,2026-11-07T07:03:08.975Z,149,mobile,social,returning,/,100,true,false,false,,true,header_nav,2,5,/shop/woven-storage-basket
+SIMULATED,SIM-S-0119,SIM-V-0119,100149995,1001239569,Original,2026-11-04T14:26:32.417Z,2026-11-04T14:27:26.008Z,54,desktop,social,new,/,100,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0120,SIM-V-0120,100149995,1001239570,Variation 1,2026-11-13T16:23:18.150Z,2026-11-13T16:24:43.763Z,86,mobile,email,new,/,50,true,false,false,,true,header_nav,1,3,/shop/linen-throw
+SIMULATED,SIM-S-0121,SIM-V-0121,100149995,1001239569,Original,2026-11-04T19:00:23.707Z,2026-11-04T19:00:54.615Z,31,mobile,organic_search,new,/,50,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0122,SIM-V-0122,100149995,1001239570,Variation 1,2026-11-11T07:36:58.620Z,2026-11-11T07:39:47.757Z,169,mobile,social,returning,/,0,true,false,true,2026-11-11T07:37:11.950Z,true,hero_cta,3,7,/shop/linen-tea-towels
+SIMULATED,SIM-S-0123,SIM-V-0123,100149995,1001239570,Variation 1,2026-11-16T16:39:39.136Z,2026-11-16T16:40:11.761Z,33,desktop,organic_search,returning,/,75,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0124,SIM-V-0124,100149995,1001239569,Original,2026-11-10T21:06:46.565Z,2026-11-10T21:08:00.871Z,74,mobile,email,new,/,50,true,false,false,,true,header_nav,1,3,/shop/oak-serving-board
+SIMULATED,SIM-S-0125,SIM-V-0125,100149995,1001239570,Variation 1,2026-11-11T16:16:46.124Z,2026-11-11T16:17:07.969Z,22,mobile,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0126,SIM-V-0126,100149995,1001239570,Variation 1,2026-11-16T14:23:26.408Z,2026-11-16T14:23:56.646Z,30,mobile,social,returning,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0127,SIM-V-0127,100149995,1001239569,Original,2026-11-17T23:00:29.742Z,2026-11-17T23:00:50.438Z,21,mobile,organic_search,new,/,25,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0128,SIM-V-0128,100149995,1001239569,Original,2026-11-08T15:41:40.006Z,2026-11-08T15:43:52.107Z,132,mobile,social,returning,/,50,true,false,false,,true,category_card,2,5,/shop/leather-cable-organiser
+SIMULATED,SIM-S-0129,SIM-V-0129,100149995,1001239569,Original,2026-11-04T10:53:57.662Z,2026-11-04T10:55:50.935Z,113,mobile,direct,new,/,0,true,false,false,,true,header_nav,1,3,/shop/arc-ceramic-vase
+SIMULATED,SIM-S-0130,SIM-V-0130,100149995,1001239570,Variation 1,2026-11-14T11:14:22.250Z,2026-11-14T11:14:31.372Z,9,mobile,social,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0131,SIM-V-0131,100149995,1001239570,Variation 1,2026-11-12T07:46:54.494Z,2026-11-12T07:47:18.482Z,24,mobile,direct,returning,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0132,SIM-V-0132,100149995,1001239569,Original,2026-11-09T12:10:08.545Z,2026-11-09T12:10:23.963Z,15,desktop,social,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0133,SIM-V-0133,100149995,1001239570,Variation 1,2026-11-15T11:34:26.078Z,2026-11-15T11:36:37.343Z,131,mobile,organic_search,returning,/,100,true,false,false,,true,category_card,1,3,/shop/felt-desk-mat
+SIMULATED,SIM-S-0134,SIM-V-0134,100149995,1001239570,Variation 1,2026-11-13T10:22:43.875Z,2026-11-13T10:22:57.959Z,14,mobile,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0135,SIM-V-0135,100149995,1001239570,Variation 1,2026-11-13T14:30:02.460Z,2026-11-13T14:30:27.156Z,25,desktop,organic_search,returning,/,0,true,false,true,2026-11-13T14:30:10.137Z,true,hero_cta,0,2,/shop
+SIMULATED,SIM-S-0136,SIM-V-0136,100149995,1001239570,Variation 1,2026-11-16T17:05:31.675Z,2026-11-16T17:07:11.995Z,100,desktop,organic_search,new,/,25,true,false,true,2026-11-16T17:05:44.356Z,true,hero_cta,2,5,/shop/linen-tea-towels
+SIMULATED,SIM-S-0137,SIM-V-0137,100149995,1001239570,Variation 1,2026-11-08T18:35:56.987Z,2026-11-08T18:37:15.952Z,79,desktop,organic_search,new,/,0,true,false,true,2026-11-08T18:36:04.036Z,true,hero_cta,1,3,/shop/wool-cushion-cover
+SIMULATED,SIM-S-0138,SIM-V-0138,100149995,1001239570,Variation 1,2026-11-10T21:28:09.161Z,2026-11-10T21:28:44.321Z,35,mobile,direct,new,/,50,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0139,SIM-V-0139,100149995,1001239569,Original,2026-11-12T22:47:13.279Z,2026-11-12T22:47:47.279Z,34,mobile,direct,new,/,0,true,false,true,2026-11-12T22:47:27.289Z,true,hero_cta,0,2,/shop
+SIMULATED,SIM-S-0140,SIM-V-0140,100149995,1001239569,Original,2026-11-07T18:55:17.930Z,2026-11-07T18:55:29.638Z,12,mobile,organic_search,returning,/,25,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0141,SIM-V-0141,100149995,1001239569,Original,2026-11-13T09:09:45.304Z,2026-11-13T09:10:12.933Z,28,mobile,social,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0142,SIM-V-0142,100149995,1001239570,Variation 1,2026-11-14T21:36:53.028Z,2026-11-14T21:37:22.990Z,30,mobile,email,new,/,50,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0143,SIM-V-0143,100149995,1001239569,Original,2026-11-05T19:46:01.507Z,2026-11-05T19:47:32.056Z,91,tablet,organic_search,new,/,0,true,false,true,2026-11-05T19:46:11.116Z,true,hero_cta,2,5,/shop/oak-wall-shelf
+SIMULATED,SIM-S-0144,SIM-V-0144,100149995,1001239569,Original,2026-11-04T17:28:33.703Z,2026-11-04T17:29:53.197Z,79,desktop,organic_search,new,/,0,true,false,false,,true,header_nav,1,3,/shop/stoneware-dinner-plates
+SIMULATED,SIM-S-0145,SIM-V-0145,100149995,1001239569,Original,2026-11-13T19:14:08.463Z,2026-11-13T19:16:10.402Z,122,desktop,organic_search,new,/,100,true,false,false,,true,header_nav,1,3,/shop/cast-iron-skillet
+SIMULATED,SIM-S-0146,SIM-V-0146,100149995,1001239570,Variation 1,2026-11-08T20:35:54.475Z,2026-11-08T20:36:50.629Z,56,mobile,direct,new,/,50,true,false,false,,true,category_card,1,3,/shop/felt-desk-mat
+SIMULATED,SIM-S-0147,SIM-V-0147,100149995,1001239570,Variation 1,2026-11-14T17:55:20.335Z,2026-11-14T17:55:56.051Z,36,mobile,direct,new,/,50,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0148,SIM-V-0148,100149995,1001239569,Original,2026-11-11T08:38:58.111Z,2026-11-11T08:41:39.377Z,161,mobile,direct,returning,/,25,true,false,false,,true,header_nav,2,5,/shop/stoneware-mug-set
+SIMULATED,SIM-S-0149,SIM-V-0149,100149995,1001239570,Variation 1,2026-11-07T08:48:34.290Z,2026-11-07T08:48:43.719Z,9,mobile,email,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0150,SIM-V-0150,100149995,1001239570,Variation 1,2026-11-04T23:54:50.984Z,2026-11-04T23:55:34.365Z,43,mobile,email,returning,/,75,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0151,SIM-V-0151,100149995,1001239570,Variation 1,2026-11-12T15:03:16.753Z,2026-11-12T15:03:34.678Z,18,desktop,organic_search,returning,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0152,SIM-V-0152,100149995,1001239570,Variation 1,2026-11-16T08:49:23.466Z,2026-11-16T08:50:15.170Z,52,desktop,organic_search,new,/,50,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0153,SIM-V-0153,100149995,1001239570,Variation 1,2026-11-14T14:39:27.307Z,2026-11-14T14:39:51.030Z,24,mobile,email,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0154,SIM-V-0154,100149995,1001239570,Variation 1,2026-11-05T07:05:52.057Z,2026-11-05T07:06:11.983Z,20,desktop,organic_search,new,/,25,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0155,SIM-V-0155,100149995,1001239569,Original,2026-11-13T21:43:10.884Z,2026-11-13T21:43:42.602Z,32,desktop,direct,returning,/,25,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0156,SIM-V-0156,100149995,1001239570,Variation 1,2026-11-17T21:41:55.879Z,2026-11-17T21:42:31.465Z,36,desktop,email,new,/,50,true,false,false,,true,header_nav,0,2,/shop
+SIMULATED,SIM-S-0157,SIM-V-0157,100149995,1001239570,Variation 1,2026-11-17T19:49:35.793Z,2026-11-17T19:50:03.032Z,27,tablet,email,new,/,25,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0158,SIM-V-0158,100149995,1001239569,Original,2026-11-08T23:09:54.708Z,2026-11-08T23:11:30.720Z,96,desktop,social,new,/,0,true,false,true,2026-11-08T23:10:15.008Z,true,hero_cta,1,3,/shop/pour-over-set
+SIMULATED,SIM-S-0159,SIM-V-0159,100149995,1001239570,Variation 1,2026-11-06T18:09:02.626Z,2026-11-06T18:11:52.840Z,170,mobile,direct,new,/,50,true,false,false,,true,header_nav,3,7,/shop/oak-serving-board
+SIMULATED,SIM-S-0160,SIM-V-0160,100149995,1001239569,Original,2026-11-11T14:23:26.553Z,2026-11-11T14:23:43.845Z,17,mobile,organic_search,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0161,SIM-V-0161,100149995,1001239569,Original,2026-11-14T21:42:13.135Z,2026-11-14T21:42:22.398Z,9,desktop,organic_search,returning,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0162,SIM-V-0162,100149995,1001239570,Variation 1,2026-11-17T12:53:14.070Z,2026-11-17T12:53:27.032Z,13,mobile,direct,new,/,25,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0163,SIM-V-0163,100149995,1001239569,Original,2026-11-13T16:58:32.315Z,2026-11-13T17:00:08.230Z,96,mobile,organic_search,new,/,100,true,false,false,,true,category_card,2,5,/shop/oak-bookends
+SIMULATED,SIM-S-0164,SIM-V-0164,100149995,1001239569,Original,2026-11-12T19:20:06.280Z,2026-11-12T19:20:27.433Z,21,mobile,social,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0165,SIM-V-0165,100149995,1001239570,Variation 1,2026-11-16T09:19:55.091Z,2026-11-16T09:20:08.206Z,13,mobile,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0166,SIM-V-0166,100149995,1001239569,Original,2026-11-16T08:43:58.327Z,2026-11-16T08:44:29.356Z,31,desktop,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0167,SIM-V-0167,100149995,1001239570,Variation 1,2026-11-06T08:55:32.629Z,2026-11-06T08:56:04.806Z,32,mobile,social,returning,/,50,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0168,SIM-V-0168,100149995,1001239570,Variation 1,2026-11-08T17:17:59.151Z,2026-11-08T17:19:40.837Z,102,mobile,direct,returning,/,25,true,false,false,,true,header_nav,1,3,/shop/linen-throw
+SIMULATED,SIM-S-0169,SIM-V-0169,100149995,1001239570,Variation 1,2026-11-10T19:21:11.148Z,2026-11-10T19:25:36.482Z,265,desktop,direct,returning,/,0,true,false,true,2026-11-10T19:21:31.827Z,true,hero_cta,3,7,/shop/glass-storage-jars
+SIMULATED,SIM-S-0170,SIM-V-0170,100149995,1001239569,Original,2026-11-10T10:48:54.346Z,2026-11-10T10:49:08.212Z,14,desktop,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0171,SIM-V-0171,100149995,1001239570,Variation 1,2026-11-04T07:09:40.667Z,2026-11-04T07:14:58.712Z,318,desktop,social,new,/,75,true,false,false,,true,header_nav,4,9,/shop/wool-cushion-cover
+SIMULATED,SIM-S-0172,SIM-V-0172,100149995,1001239569,Original,2026-11-11T14:47:58.350Z,2026-11-11T14:52:25.511Z,267,desktop,social,new,/,50,true,false,false,,true,category_card,3,7,/shop/soy-wax-candle
+SIMULATED,SIM-S-0173,SIM-V-0173,100149995,1001239570,Variation 1,2026-11-09T18:15:15.366Z,2026-11-09T18:15:55.133Z,40,tablet,direct,returning,/,100,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0174,SIM-V-0174,100149995,1001239570,Variation 1,2026-11-12T11:43:39.577Z,2026-11-12T11:43:54.308Z,15,desktop,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0175,SIM-V-0175,100149995,1001239570,Variation 1,2026-11-09T08:04:37.688Z,2026-11-09T08:05:11.565Z,34,mobile,direct,returning,/,25,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0176,SIM-V-0176,100149995,1001239569,Original,2026-11-16T11:31:00.019Z,2026-11-16T11:31:35.155Z,35,desktop,direct,new,/,25,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0177,SIM-V-0177,100149995,1001239570,Variation 1,2026-11-05T23:30:00.037Z,2026-11-05T23:30:09.356Z,9,mobile,direct,returning,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0178,SIM-V-0178,100149995,1001239569,Original,2026-11-09T20:38:28.426Z,2026-11-09T20:39:17.093Z,49,desktop,direct,new,/,0,true,false,true,2026-11-09T20:38:41.804Z,true,hero_cta,1,3,/shop/orb-table-lamp
+SIMULATED,SIM-S-0179,SIM-V-0179,100149995,1001239570,Variation 1,2026-11-16T17:01:34.758Z,2026-11-16T17:02:58.276Z,84,desktop,social,returning,/,100,true,false,false,,true,category_card,1,3,/shop/felt-desk-mat
+SIMULATED,SIM-S-0180,SIM-V-0180,100149995,1001239569,Original,2026-11-10T12:43:48.150Z,2026-11-10T12:43:59.116Z,11,desktop,organic_search,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0181,SIM-V-0181,100149995,1001239569,Original,2026-11-14T14:17:27.551Z,2026-11-14T14:18:46.889Z,79,mobile,social,new,/,50,true,false,false,,true,category_card,1,3,/shop/marble-mortar-and-pestle
+SIMULATED,SIM-S-0182,SIM-V-0182,100149995,1001239569,Original,2026-11-05T17:05:38.501Z,2026-11-05T17:06:01.300Z,23,mobile,social,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0183,SIM-V-0183,100149995,1001239570,Variation 1,2026-11-10T08:34:15.132Z,2026-11-10T08:34:51.323Z,36,mobile,direct,returning,/,50,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0184,SIM-V-0184,100149995,1001239569,Original,2026-11-09T20:18:09.330Z,2026-11-09T20:18:27.740Z,18,mobile,organic_search,returning,/,25,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0185,SIM-V-0185,100149995,1001239570,Variation 1,2026-11-14T10:36:53.638Z,2026-11-14T10:39:47.854Z,174,desktop,social,new,/,50,true,false,false,,true,category_card,2,5,/shop/pour-over-set
+SIMULATED,SIM-S-0186,SIM-V-0186,100149995,1001239569,Original,2026-11-15T12:15:50.732Z,2026-11-15T12:16:10.510Z,20,desktop,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0187,SIM-V-0187,100149995,1001239569,Original,2026-11-16T12:34:31.742Z,2026-11-16T12:34:49.561Z,18,mobile,social,returning,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0188,SIM-V-0188,100149995,1001239569,Original,2026-11-07T09:40:13.178Z,2026-11-07T09:40:26.398Z,13,mobile,email,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0189,SIM-V-0189,100149995,1001239570,Variation 1,2026-11-10T22:01:20.827Z,2026-11-10T22:01:46.406Z,26,mobile,social,new,/,25,true,false,true,2026-11-10T22:01:35.523Z,true,hero_cta,0,2,/shop
+SIMULATED,SIM-S-0190,SIM-V-0190,100149995,1001239569,Original,2026-11-17T07:38:19.177Z,2026-11-17T07:38:48.960Z,30,mobile,organic_search,new,/,0,true,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0191,SIM-V-0191,100149995,1001239569,Original,2026-11-11T14:01:22.333Z,2026-11-11T14:01:28.657Z,6,desktop,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0192,SIM-V-0192,100149995,1001239569,Original,2026-11-08T10:37:32.520Z,2026-11-08T10:38:12.985Z,40,mobile,email,returning,/,75,true,false,false,,true,header_nav,0,2,/shop
+SIMULATED,SIM-S-0193,SIM-V-0193,100149995,1001239569,Original,2026-11-05T11:59:47.030Z,2026-11-05T12:05:39.629Z,353,mobile,email,new,/,0,true,false,true,2026-11-05T11:59:59.031Z,true,hero_cta,5,11,/shop/marble-mortar-and-pestle
+SIMULATED,SIM-S-0194,SIM-V-0194,100149995,1001239570,Variation 1,2026-11-08T08:14:29.338Z,2026-11-08T08:14:50.856Z,22,mobile,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0195,SIM-V-0195,100149995,1001239569,Original,2026-11-06T16:08:20.526Z,2026-11-06T16:08:48.667Z,28,desktop,direct,new,/,0,false,true,false,,false,none,0,1,/
+SIMULATED,SIM-S-0196,SIM-V-0196,100149995,1001239569,Original,2026-11-07T17:10:36.223Z,2026-11-07T17:12:08.068Z,92,mobile,organic_search,new,/,100,true,false,false,,true,header_nav,1,3,/shop/stoneware-mug-set
+SIMULATED,SIM-S-0197,SIM-V-0197,100149995,1001239569,Original,2026-11-13T21:34:52.790Z,2026-11-13T21:42:40.232Z,467,mobile,organic_search,new,/,25,true,false,true,2026-11-13T21:35:17.966Z,true,hero_cta,5,11,/shop/aluminium-task-light
+SIMULATED,SIM-S-0198,SIM-V-0198,100149995,1001239569,Original,2026-11-13T11:25:01.258Z,2026-11-13T11:25:14.727Z,13,mobile,email,new,/,0,true,false,true,2026-11-13T11:25:05.392Z,true,hero_cta,0,2,/shop
+SIMULATED,SIM-S-0199,SIM-V-0199,100149995,1001239570,Variation 1,2026-11-15T07:35:11.915Z,2026-11-15T07:36:17.588Z,66,desktop,organic_search,new,/,25,true,false,true,2026-11-15T07:35:19.617Z,true,hero_cta,1,3,/shop/linen-notebook
+SIMULATED,SIM-S-0200,SIM-V-0200,100149995,1001239569,Original,2026-11-13T21:01:11.062Z,2026-11-13T21:01:58.062Z,47,desktop,email,new,/,100,true,true,false,,false,none,0,1,/
